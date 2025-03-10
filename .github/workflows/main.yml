@@ -51,7 +51,7 @@ jobs:
           path: ./dist
 
       - name: Dist test
-        run: ls-la .dist
+        run: ls -la ./dist
 
       - name: Deploy on GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
