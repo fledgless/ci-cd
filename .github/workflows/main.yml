@@ -26,6 +26,15 @@ jobs:
       - name: App build
         run: npm run build
 
+      - name: Build test
+        run: ls -la ./dist
+
+      - name: Dist folder upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+
   deploy:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -34,6 +43,15 @@ jobs:
     steps:
       - name: Code checkout
         uses: actions/checkout@v3
+
+      - name: Dist folder download
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+
+      - name: Dist test
+        run: ls-la .dist
 
       - name: Deploy on GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
